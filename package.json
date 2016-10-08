@@ -17,6 +17,8 @@
     "knex": "^0.12.2",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
+    "passport-linkedin": "^1.0.0",
+    "passport-localapikey": "0.0.3",
     "pg": "^6.1.0",
     "serve-favicon": "~2.3.0"
   },
