@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require(`express`);
+const router = express.Router();
+const knex = require(`../knex`);
+const camelizeKey = require(`humps`);
+const decamelizeKeys = require(`humps`);
+const passport = require(`passport`)
+const localStrategy = require(`passport-local`).Strategy;
+
+
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get(`/`, function(req, res, next) {
+  res.send(`respond with a resource`);
 });
 
 module.exports = router;
