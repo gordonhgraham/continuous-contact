@@ -1,4 +1,24 @@
-
 .modal-content {
   color: #453A34;
+}
+
+nav .brand-logo {
+  font-family: 'Cinzel Decorative', cursive;
+  color: #453A34;
+  margin-left: 1%;
+}
+
+.nav-wrapper {
+  background-color: #fff;
+}
+
+.btn {
+  background-color: #9E474C
+}
+
+main {
+  /*font-family: 'Lato', sans-serif;*/
+  font-size: 1.2em;
+  font-family: 'Raleway', sans-serif;
+  /*background-color: #F1F5EB;*/
 }
