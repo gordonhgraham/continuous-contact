@@ -5,7 +5,7 @@ const router = express.Router();
 const knex = require(`../knex`);
 const camelizeKey = require(`humps`);
 const decamelizeKeys = require(`humps`);
-const passport = require(`passport`)
+const passport = require(`../config/passport`)
 const LocalAPIKeyStrategy = require(`passport-localapikey`).Strategy;
 
 /* GET users listing. */
