@@ -38,6 +38,7 @@ app.use(logger(`dev`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, `public`)));
 app.use(session({
   secret: `keyboard cat`,
@@ -78,7 +79,6 @@ app.use((req, res, next) => {
 app.use(`/`, routes);
 app.use(`/user`, user);
 app.use(`/contact`, contact);
-
 // app.use(`/users`, users);
 
 // catch 404 and forward to error handler
