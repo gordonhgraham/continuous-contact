@@ -35,6 +35,7 @@ exports.up = (knex, Promise) => {
 
     knex.schema.createTable(`interactions`, table => {
       table.increments();
+      table.integer(`user_id`).references(`users.id`).notNullable();
       table.integer(`contact_id`).references(`contacts.id`).notNullable();
       table.date(`date`).notNullable();
       table.integer(`type_id`).references(`interaction_type.id`).notNullable();
