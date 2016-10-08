@@ -1,9 +1,10 @@
-require(`dotenv`).load()
+'use strict';
+
+require(`dotenv`).load();
 const express = require(`express`);
 const session = require(`express-session`);
 const exphbs = require(`express-handlebars`);
 const path = require(`path`);
-const favicon = require(`serve-favicon`);
 const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
@@ -13,6 +14,7 @@ const bcrypt = require(`bcrypt`);
 const routes = require(`./routes/index`);
 const user = require(`./routes/user`);
 const contact = require(`./routes/contact`);
+
 // const users = require(`./routes/users`);
 
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
@@ -29,7 +31,7 @@ passport.use(new LinkedInStrategy({
   done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
 }));
 
-app.engine(`handlebars`, exphbs({defaultLayout: `main`}));
+app.engine(`handlebars`, exphbs({ defaultLayout: `main` }));
 app.set(`view engine`, `handlebars`);
 
 app.use(logger(`dev`));
@@ -76,6 +78,7 @@ app.use((req, res, next) => {
 app.use(`/`, routes);
 app.use(`/user`, user);
 app.use(`/contact`, contact);
+
 // app.use(`/users`, users);
 
 // catch 404 and forward to error handler
