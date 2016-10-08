@@ -34,6 +34,9 @@ exports.seed = (knex, Promise) => {
         photo: ``,
         notes: `James is my father. He's great.`,
       }),
+
+      /* ================i stopped here================ */
+
       knex(`interactions`).insert({
         contact_id: contact_id,
         date: date,
@@ -44,10 +47,3 @@ exports.seed = (knex, Promise) => {
     ]);
   });
 };
-
-
-/*
-table.integer(`contact_id`).references(`contacts.id`).notNullable();
-table.date(`date`).notNullable();
-table.integer(`type_id`).references(`interaction_type.id`).notNullable();
-table.text(`notes`).defaultTo(``);
