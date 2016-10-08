@@ -6,6 +6,8 @@ const path = require(`path`);
 const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
+const passport = require(`passport`)
+const localStrategy = require(`passport-local`).Strategy;
 
 const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
@@ -36,6 +38,35 @@ app.use(`/individual`, individual);
 app.use((req, res, next) => {
   const err = new Error(`Not Found`);
 
+// use passport
+passport.use(new LocalAPIKeyStrategy(
+  function(apikey, done) {
+    User.findOne({ apikey: apikey }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+
+passport.use(new LinkedInStrategy({
+    consumerKey: LINKEDIN_API_KEY,
+    consumerSecret: LINKEDIN_SECRET_KEY,
+    callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+
+app.use('/', routes);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
