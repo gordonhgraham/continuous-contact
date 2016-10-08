@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require(`express`);
-const expresshbs = (`express-handlebars`);
+const exphbs = require(`express-handlebars`);
 const path = require(`path`);
 const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
@@ -9,6 +9,8 @@ const bodyParser = require(`body-parser`);
 
 const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
+const contacts = require(`./routes/contacts`);
+const individual = require(`./routes/individual`);
 
 const app = express();
 
@@ -16,7 +18,7 @@ const app = express();
 app.set(`views`, path.join(__dirname, `views`));
 app.set(`view engine`, `jade`);
 
-app.engine(`handlebars`, expresshbs({ defaultLayout: `main` }));
+app.engine(`handlebars`, exphbs({ defaultLayout: `main` }));
 app.set(`view engine`, `handlebars`);
 
 app.use(logger(`dev`));
@@ -27,6 +29,8 @@ app.use(express.static(path.join(__dirname, `public`)));
 
 app.use(`/`, routes);
 app.use(`/users`, users);
+app.use(`/contacts`, contacts);
+app.use(`/individual`, individual);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
