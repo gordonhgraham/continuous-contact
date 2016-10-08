@@ -4,7 +4,6 @@ const express = require(`express`);
 const router = express.Router();
 const passport = require(`passport`);
 const knex = require(`../db/knex`);
-
 // const LocalStrategy = require(`passport-local`).Strategy;
 
 /* GET users listing. */
