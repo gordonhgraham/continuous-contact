@@ -1,5 +1,7 @@
 'use strict'
 
+/* eslint-disble max-statements, max-len */
+
 exports.up = (knex, Promise) => {
   return Promise.all([
     knex.schema.createTable(`users`, table => {
@@ -46,7 +48,7 @@ exports.up = (knex, Promise) => {
       table.integer(`id`).notNullable().unique();
       table.string(`type`).notNullable();
       table.timestamps(true, true);
-    }),
+    })
   ]);
 };
 
@@ -55,6 +57,6 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable(`users`),
     knex.schema.dropTable(`contacts`),
     knex.schema.dropTable(`interactions`),
-    knex.schema.dropTable(`interaction_type`),
+    knex.schema.dropTable(`interaction_type`)
   ]);
 };
