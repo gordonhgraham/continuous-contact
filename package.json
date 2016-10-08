@@ -12,7 +12,6 @@
     "express": "~4.13.4",
     "express-handlebars": "^3.0.0",
     "humps": "^1.1.0",
-    "jade": "~1.11.0",
     "knex": "^0.12.2",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
