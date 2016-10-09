@@ -2,7 +2,7 @@
 
 const express = require(`express`);
 const router = express.Router();
-const knex = require(`../knex`);
+const knex = require(`../db/knex`);
 const camelizeKey = require(`humps`);
 const decamelizeKeys = require(`humps`);
 const passport = require(`../config/passport`)
