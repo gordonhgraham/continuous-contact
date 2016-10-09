@@ -16,8 +16,7 @@ exports.seed = (knex, Promise) => {
         hashed_password: `password`,
         first_name: `Gordon`,
         last_name: `Graham`,
-        linkedin_url: `linkedin_url`,
-        fb_url: `fb_url`,
+        linkedin_url: ``,
         is_admin: `true`
       }),
       knex(`contacts`).insert({
@@ -36,16 +35,19 @@ exports.seed = (knex, Promise) => {
         photo: ``,
         notes: `James is my father. He's great.`
       }),
-
-      /* ================i stopped here================ */
-
+      knex(`interaction_type`).insert([
+        { id: 1, type: `phone` },
+        { id: 2, type: `email` },
+        { id: 3, type: `in person` },
+        { id: 4, type: `other` }
+      ]),
       knex(`interactions`).insert({
-        contact_id: contact_id,
-        date: date,
-        type_id: type_id,
-        notes: notes,
-      }),
-      knex(`interaction_type`).insert({id: 3, colName: `rowValue3`}),
+        user_id: 1,
+        contact_id: 1,
+        date: `07/07/16`,
+        type_id: 1,
+        notes: `We chatted. On the telephone. It was my birthday.`
+      })
     ]);
   });
 };

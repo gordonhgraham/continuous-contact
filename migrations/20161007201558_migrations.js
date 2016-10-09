@@ -39,7 +39,7 @@ exports.up = (knex, Promise) => {
       table.increments();
       table.integer(`user_id`).references(`users.id`).notNullable();
       table.integer(`contact_id`).references(`contacts.id`).notNullable();
-      table.date(`date`).notNullable();
+      table.text(`date`).notNullable();
       table.integer(`type_id`).references(`interaction_type.id`).notNullable();
       table.text(`notes`).defaultTo(``);
       table.timestamps(true, true);
