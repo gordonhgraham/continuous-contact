@@ -6,7 +6,7 @@ const path = require(`path`);
 const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
-const passport = require('passport');
+const passport = require(`passport`);
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 
 const routes = require(`./routes/index`);
