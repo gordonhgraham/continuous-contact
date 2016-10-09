@@ -7,11 +7,11 @@ exports.up = (knex, Promise) => {
     knex.schema.createTable(`users`, table => {
       table.increments();
       table.string(`email`).notNullable().unique().index();
-      table.specificType(`hashed_password`, `char(60)`).notNullable().defaultTo(``);
-      table.string(`first_name`).notNullable().defaultTo(``);
-      table.string(`last_name`).notNullable().defaultTo(``);
+      table.specificType(`hashed_password`, `char(60)`).notNullable();
+      table.string(`first_name`).defaultTo(``);
+      table.string(`last_name`).defaultTo(``);
       table.text(`linkedin_url`).defaultTo(``);
-      table.text(`fb_url`).defaultTo(``);
+      // table.text(`fb_url`).defaultTo(``);
       table.boolean(`is_admin`).notNullable().defaultTo(false);
       table.timestamps(true, true);
     }),
@@ -19,8 +19,8 @@ exports.up = (knex, Promise) => {
     knex.schema.createTable(`contacts`, table => {
       table.increments();
       table.integer(`user_id`).references(`users.id`).notNullable();
-      table.string(`first_name`).notNullable().defaultTo(``);
-      table.string(`last_name`).notNullable().defaultTo(``).index();
+      table.string(`first_name`).notNullable();
+      table.string(`last_name`).notNullable().index();
       table.string(`company`).defaultTo(``);
       table.string(`phone`).defaultTo(``);
       table.string(`email`).defaultTo(``).index();
@@ -48,16 +48,15 @@ exports.up = (knex, Promise) => {
     knex.schema.createTable(`interaction_type`, table => {
       table.integer(`id`).notNullable().unique();
       table.string(`type`).notNullable();
-      table.timestamps(true, true);
     })
   ]);
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable(`users`),
-    knex.schema.dropTable(`contacts`),
     knex.schema.dropTable(`interactions`),
-    knex.schema.dropTable(`interaction_type`)
+    knex.schema.dropTable(`interaction_type`),
+    knex.schema.dropTable(`contacts`),
+    knex.schema.dropTable(`users`)
   ]);
 };

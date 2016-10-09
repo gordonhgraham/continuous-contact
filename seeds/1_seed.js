@@ -1,11 +1,13 @@
 'use strict'
 
+/* eslint-disable camelcase, sort-keys */
+
 exports.seed = (knex, Promise) => {
   return Promise.all([
     knex(`users`).del(),
     knex(`contacts`).del(),
     knex(`interactions`).del(),
-    knex(`interaction_type`).del(),
+    knex(`interaction_type`).del()
   ])
   .then(() => {
     return Promise.all([
@@ -16,7 +18,7 @@ exports.seed = (knex, Promise) => {
         last_name: `Graham`,
         linkedin_url: `linkedin_url`,
         fb_url: `fb_url`,
-        is_admin: `true`,
+        is_admin: `true`
       }),
       knex(`contacts`).insert({
         user_id: 1,
@@ -32,7 +34,7 @@ exports.seed = (knex, Promise) => {
         linkedin_url: ``,
         fb_url: ``,
         photo: ``,
-        notes: `James is my father. He's great.`,
+        notes: `James is my father. He's great.`
       }),
 
       /* ================i stopped here================ */
