@@ -19,9 +19,11 @@ it works though. we can switch it tomorrow */
     });
 });
 
-// router.get(`/`, (req, res, next) => {
-//
-// });
+// read--after a login, display contacts page...res.redirect
+router.get(`/`, (req, res, next) => {
+  // if req.session, res.render contacts.hbs
+  // else, res.redirect to index.js
+});
 
 // user signup with email
 router.post(`/`, (req, res, next) => {
@@ -35,20 +37,8 @@ router.post(`/`, (req, res, next) => {
     // then render user's contats page
   } else {
     // revisit...dont know how to handle error of missing email or pass
-    return (err => { next(err); });
+    return err => { next(err); };
   }
 });
-
-// router.post(`/`, passport.authenticate(`local`, {
-//   sucessRedirect: `http://facebook.com`,
-//   failureRedirect: `http://google.com` }),
-//   (req, res, next) => {
-//     // console.log(req.user);
-//     // res.send(`LOGIN SUCCESS`);
-// });
-
-// router.get(`/`, (req, res, next) => {
-//   res.send(`respond with a resource`);
-// });
 
 module.exports = router;
