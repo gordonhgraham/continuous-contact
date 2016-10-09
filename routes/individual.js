@@ -5,7 +5,8 @@ const router = express.Router();
 const knex = require(`../db/knex`);
 
 
-/* GET individual contact page. */
+/* GET contact page. */
+/* list interactions--probably needs to go in router.get for contacts page */
 router.get(`/:id`, (req, res, next) => {
   // const userId = req.session.id;
   // uncomment and change .where(`user_id`, 1) to userId
@@ -24,6 +25,7 @@ router.get(`/:id`, (req, res, next) => {
     });
 });
 
+/* update contact */
 router.patch(`/:id`, (req, res, next) => {
   // const userId = req.session.id;
   // uncomment and change .where(`user_id`, 1) to userId
@@ -43,6 +45,7 @@ router.patch(`/:id`, (req, res, next) => {
   });
 });
 
+/* delete contact */
 router.delete(`/:id`, (req, res, next) => {
   // const userId = req.session.id;
   // uncomment and change .where(`user_id`, 1) to userId
@@ -59,5 +62,12 @@ router.delete(`/:id`, (req, res, next) => {
     if (err) { res.send(err); }
   });
 });
+
+
+/* create interaction */
+
+
+/* delete interaction */
+
 
 module.exports = router;

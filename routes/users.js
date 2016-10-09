@@ -13,12 +13,23 @@ const LocalAPIKeyStrategy = require(`passport-localapikey`).Strategy;
 
 // read--after a login, display contacts page...res.redirect
 router.get(`/`, (req, res, next) => {
-  // if req.session, res.render contacts.hbs
-  // else, res.redirect to index.js
+  if (req.session) {
+    const userId = req.session.id;
+
+    knex(`contacts`)
+      .where(`user_id`, 1)
+      .select(`first_name`, `last_name`, `company`)
+      .then(contacts => {
+        // contacts should be an array of objects
+        // res.render(`contacts.hbs`, contacts)
+        res.send(contacts);
+      })
+      .catch(err => { res.send(err); });
+  } else { res.redirect(`/`); }
 });
 
 // user signup with email
-router.post(`/`, (req, res, next) => {
+router.post(`/signup`, (req, res, next) => {
   const newUser = req.body;
 
   // if anything is blank send error
@@ -32,5 +43,23 @@ router.post(`/`, (req, res, next) => {
     return err => { next(err); };
   }
 });
+
+// user login with email
+router.post(`/login`, (req, res, next) => {
+
+});
+
+// user signup with Linkedin
+router.post(`/signup`, (req, res, next) => {
+  // wait to see what passport needs with this
+});
+
+// user login with Linkedin
+router.get(`/login`, (req, res, next) => {
+  // wait to see what passport needs with this...
+  res.render(`linkedin`)
+});
+
+
 
 module.exports = router;
