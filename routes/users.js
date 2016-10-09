@@ -6,7 +6,6 @@ const passport = require(`passport`);
 const knex = require(`../db/knex`);
 
 // const LocalStrategy = require(`passport-local`).Strategy;
-
 /* GET users listing. */
 router.get(`/`, (req, res) => {
 /* this currently queries database for users, not contacts,
