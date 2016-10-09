@@ -25,7 +25,3 @@ exports.seed = (knex, Promise) => {
       ]);
     });
 };
-
-/* ============= YO, all this info came from the seed file
-
-in the proj dir, check there for more ================= */
