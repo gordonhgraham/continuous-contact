@@ -10,6 +10,7 @@ const bodyParser = require(`body-parser`);
 
 const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
+
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 const passport = require(`passport`);
 const session = require(`express-session`);
