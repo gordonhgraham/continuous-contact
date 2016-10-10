@@ -15,7 +15,7 @@ const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
 const contacts = require(`./routes/contacts`);
 const individual = require(`./routes/individual`);
-const knex = require(`./db/knex`);
+const knex = require(`/db/knex`);
 
 
 
