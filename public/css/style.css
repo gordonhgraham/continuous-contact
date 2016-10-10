@@ -12,13 +12,22 @@ nav .brand-logo {
   background-color: #fff;
 }
 
+.footer-copyright {
+  color: #453A34;
+}
+
 .btn {
-  background-color: #9E474C
+  background-color: #9E474C;
+}
+
+.btn:hover {
+  background-color: #F2D653;
 }
 
 main {
   /*font-family: 'Lato', sans-serif;*/
   font-size: 1.2em;
   font-family: 'Raleway', sans-serif;
+  color: #453A34;
   /*background-color: #F1F5EB;*/
 }
