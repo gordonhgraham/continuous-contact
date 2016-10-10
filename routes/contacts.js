@@ -5,7 +5,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get(`/`, (req, res, next) => {
-  res.send(`contats works, i hope`);
+  res.send(`contacts works, i hope`);
 });
 
 module.exports = router;
