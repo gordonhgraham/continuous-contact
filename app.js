@@ -7,6 +7,7 @@ const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
 const passport = require(`passport`);
+const LocalAPIKeyStrategy = require(`passport-localapikey`).Strategy;
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 
 const routes = require(`./routes/index`);
@@ -18,7 +19,18 @@ const individual = require(`./routes/individual`);
 
 const app = express();
 
-// passport config
+// passport config--localStrategy
+passport.use(new LocalAPIKeyStrategy(
+  function(apikey, done) {
+    User.findOne({ apikey: apikey }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+
+// passport config--LinkedinStrategy
 passport.use(new LinkedInStrategy({
   clientID: `	78l9gagfa8y1e4`,
   clientSecret: `tebeZ6mNZqOrZOxd`,
