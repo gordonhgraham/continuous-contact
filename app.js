@@ -63,12 +63,15 @@ passport.use(new LinkedInStrategy({
     state: true,
   },
   function(token, tokenSecret, profile, done) {
-
+    console.log('Log1');
+    process.nextTick(function () {
+      console.log('Log2');
       // To keep the example simple, the user's LinkedIn profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
+      // represent the logged-in user. In a typical application, you would want
       // to associate the LinkedIn account with a user record in your database,
-      // and return that user instead (so perform a knex query here later.)
+      // and return that user instead.
       return done(null, profile);
+    });
 }));
 
 //mount auth.js middleware

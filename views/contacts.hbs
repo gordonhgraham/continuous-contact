@@ -37,12 +37,17 @@
 
 <main>
 
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
-  <h1> you're wonderful {{name}} </h1>
-  <h3> my favorite thing is {{favoriteThing}}</h3>
-  <img src={{img_url}} alt='bensen'/>
-
+  {{#if user}}
+    <p>
+      Hello {{user.displayName}}
+      |
+      <a href="/logout">Logout</a>
+    </p>
+  {{else}}
+    <p>
+      <a href="/auth/linkedin">Login</a>
+    </p>
+  {{/if}}
 
 </main>
 
@@ -56,6 +61,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 <script src="js/app.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/login.js"></script>
 
 </body>
 
