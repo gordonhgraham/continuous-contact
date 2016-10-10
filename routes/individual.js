@@ -5,27 +5,45 @@ const router = express.Router();
 const knex = require(`../db/knex`);
 
 
-/* GET contact page. */
-/* list interactions--probably needs to go in router.get for contacts page */
+
+// read contact
+/* still need to list interactions
+--probably needs to go in router.get for contacts page */
 router.get(`/:id`, (req, res, next) => {
   // const userId = req.session.id;
   // uncomment and change .where(`user_id`, 1) to userId
   const contactId = req.params.id;
+  let baldwin = {};
 
   knex(`contacts`)
     .where(`user_id`, 1)
     .where(`id`, contactId)
     .then(contact => {
-      res.send(contact);
+      // baldwin was just a test, i have to go back and
+      // fix this...can't remember what was going on --GG
 
+      baldwin = contact[0];
+
+      // res.send(contact);
       // res.render(`individual.hbs`, {{contact}})
     })
-    .next(err => {
-      if (err) { res.send(err); }
+    .then(() => {
+      knex(`interactions`)
+        .where(`user_id`, 1)
+        .where(`contact_id`, 1)
+        .innerJoin(`type_id`, `interactions.type_id`, `interaction_type.id`)
+        .then(data => {
+          console.log(data);
+          // console.log(baldwin);
+
+          // res.send(true)
+        })
+    })
+    .catch(err => { res.send(err);
     });
 });
 
-/* update contact */
+// update contact
 router.patch(`/:id`, (req, res, next) => {
   // const userId = req.session.id;
   // uncomment and change .where(`user_id`, 1) to userId
@@ -45,7 +63,7 @@ router.patch(`/:id`, (req, res, next) => {
   });
 });
 
-/* delete contact */
+// delete contact
 router.delete(`/:id`, (req, res, next) => {
   // const userId = req.session.id;
   // uncomment and change .where(`user_id`, 1) to userId
@@ -63,11 +81,14 @@ router.delete(`/:id`, (req, res, next) => {
   });
 });
 
+// create interaction
+router.post(`/int`, (req, res, next) => {
+  //
+});
 
-/* create interaction */
-
-
-/* delete interaction */
-
+// delete interaction
+router.delete(`/int`, (req, res, next) => {
+  //
+});
 
 module.exports = router;
