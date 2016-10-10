@@ -10,6 +10,9 @@ const bodyParser = require(`body-parser`);
 
 const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
+const contacts = require(`./routes/contacts`);
+const individual = require(`./routes/individual`);
+const knex = require(`/db/knex`);
 
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 const passport = require(`passport`);
