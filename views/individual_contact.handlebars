@@ -23,7 +23,19 @@
                             <i class="material-icons small right-align"><a href="{{linkedin_url}}">surround_sound</a></i>
                         </p>
                         <br>
-                        <a class="waves-effect waves-light btn">Edit Contact</a>
+                        <!-- Modal Trigger -->
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal-edit-contact">Edit Contact</a>
+                        <!-- Modal Structure -->
+                    </div>
+                    <div id="modal-edit-contact" class="modal">
+                        <div class="modal-content">
+                            <h4>Edit</h4>
+                            <p>The edit form goes here. For sure, here...</p>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Discard Changes</a>
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save Changes</a>
+                        </div>
                     </div>
                 </div>
             </p>
@@ -31,9 +43,10 @@
         <div class="col l8 container">
             <div class="row">
                 <div class="col m6">
-                    <h4>Interactions</h4></div>
-                <div class="col m6 valign-wrapper">
-                    <a class="btn-floating btn-medium waves-effect waves-light red valign "><i class="material-icons">add</i></a></div>
+                    <h4>Interactions</h4>
+                </div>
+                <div class="col m1 offset-m5">
+                    <a id="add-interaction" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a></div>
             </div>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
@@ -70,7 +83,5 @@
                 </li>
             </ul>
         </div>
-
     </div>
-
 </div>
