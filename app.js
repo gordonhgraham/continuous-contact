@@ -11,13 +11,12 @@ const bodyParser = require(`body-parser`);
 const bcrypt = require(`bcrypt`);
 
 const routes = require(`./routes/index`);
-const users = require(`./routes/users`);
 const user = require(`./routes/user`);
 const contact = require(`./routes/contact`);
+// const users = require(`./routes/users`);
 
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 const passport = require(`passport`);
-const session = require(`express-session`);
 const app = express();
 
 passport.use(new LinkedInStrategy({
@@ -30,12 +29,8 @@ passport.use(new LinkedInStrategy({
   done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
 }));
 
-// view engine setup
-app.set(`views`, path.join(__dirname, `views`));
-app.set(`view engine`, `hbs`);
-
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, `public`, `favicon.ico`)));
+app.engine(`handlebars`, exphbs({defaultLayout: `main`}));
+app.set(`view engine`, `handlebars`);
 
 app.use(logger(`dev`));
 app.use(bodyParser.json());
@@ -79,9 +74,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use(`/`, routes);
-app.use(`/users`, users);
 app.use(`/user`, user);
 app.use(`/contact`, contact);
+// app.use(`/users`, users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

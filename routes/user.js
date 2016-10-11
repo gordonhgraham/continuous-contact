@@ -9,8 +9,7 @@ router.get(`/`, (req, res, next) => {
   knex(`contacts`)
     .where(`user_id`, 1)
     .then(data => {
-      console.log(data);
-      res.render(`user_home.hbs`, data)
+      res.render(`user`, data)
     });
 });
 

@@ -8,12 +8,10 @@ const knex = require(`../db/knex`);
 
 /* GET users listing. */
 router.get(`/`, (req, res) => {
-
 /* this currently queries database for users, not contacts, it works though. we can switch it tomorrow */
   knex(`users`)
     .then(users => {
-      console.log(users);
-      res.render(`user_home`, {
+      res.render(`user`, {
         users: users
       });
     })
