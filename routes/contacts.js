@@ -2,10 +2,16 @@
 
 const express = require(`express`);
 const router = express.Router();
+const knex = require(`../db/knex`);
 
 /* GET home page. */
 router.get(`/`, (req, res, next) => {
-  res.send(`contacts works, i hope`);
+  knex(`contacts`)
+    .where(`user_id`, 1)
+    .then(data => {
+      console.log(data);
+      res.render(`user_home.hbs`, data)
+    });
 });
 
 module.exports = router;
