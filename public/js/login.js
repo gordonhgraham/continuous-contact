@@ -1,9 +1,9 @@
-(function() {
+$(document).ready(function() {
   'use strict';
 
-  $('.modal1').sideNav();
+  $('#modal1');
 
-  $('#loginForm').submit((event) => {
+  $('#login').click((event) => {
     event.preventDefault();
 
     const email = $('#email').val().trim();
@@ -27,10 +27,11 @@
 
     $.ajax(options)
       .done(() => {
-        window.location.href = '/contacts.html';
+        window.location.href = '/index';
       })
       .fail(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
       });
   });
-})();
+})
+// ();

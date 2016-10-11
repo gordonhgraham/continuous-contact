@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  $('.modal2').sideNav();
+  $('#modal2');
   // $('.button-collapse').sideNav();
 
   // eslint-disable-next-line max-statements
