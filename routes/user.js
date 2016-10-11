@@ -6,10 +6,9 @@ const knex = require(`../db/knex`);
 
 /* GET home page. */
 router.get(`/`, (req, res, next) => {
-  knex(`contacts`)
-    .where(`user_id`, 1)
+  knex(`users`)
     .then(data => {
-      res.render(`user`, data)
+      res.render(`user`, { users: data });
     });
 });
 
