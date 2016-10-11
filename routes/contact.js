@@ -4,6 +4,8 @@ const express = require(`express`);
 const router = express.Router();
 const knex = require(`../db/knex`);
 
+
+
 // read contact
 /* still need to list interactions
 --probably needs to go in router.get for contacts page */

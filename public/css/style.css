@@ -1,3 +1,7 @@
+/** {
+  outline: 3px black solid;
+}*/
+
 .modal-content {
   color: #453A34;
 }
@@ -30,4 +34,8 @@ main {
   font-family: 'Raleway', sans-serif;
   color: #453A34;
   /*background-color: #F1F5EB;*/
+}
+
+#add-interaction {
+  margin-top: 19px;
 }

@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="col l4">
+            <p>
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="http://placehold.it/300x400">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{first_name}} {{last_name}}<i class="material-icons right">perm_identity</i></span>
+                        <p>{{company}}</p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{first_name}} {{last_name}}<i class="material-icons right">close</i></span>
+                        <p>
+                            {{company}}<br>{{address}}<br>{{city}}, {{state}} {{zip}}<br>
+                            <hr>Tel: {{phone}}<br><hr>Email: {{email}}<br>
+                            <hr>
+                            <p>Notes:<br>{{notes}}</p>
+                            <br>
+                            <hr>
+                            <i class="material-icons small"><a href="{{fb_url}}">picture_in_picture</a></i>
+                            <i class="material-icons small right-align"><a href="{{linkedin_url}}">surround_sound</a></i>
+                        </p>
+                        <br>
+                        <!-- Modal Trigger -->
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal-edit-contact">Edit Contact</a>
+                        <!-- Modal Structure -->
+                    </div>
+                    <div id="modal-edit-contact" class="modal">
+                        <div class="modal-content">
+                            <h4>Edit</h4>
+                            <p>The edit form goes here. For sure, here...</p>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Discard Changes</a>
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save Changes</a>
+                        </div>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div class="col l8 container">
+            <div class="row">
+                <div class="col m6">
+                    <h4>Interactions</h4>
+                </div>
+                <div class="col m1 offset-m5">
+                    <a id="add-interaction" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a></div>
+            </div>
+            <ul class="collapsible" data-collapsible="expandable">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">phone</i>10/3/16
+                    </div>
+                    <div class="collapsible-body">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <div class="right-align"><i class="material-icons">mode_edit</i></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">phone</i>9/13/16</div>
+                    <div class="collapsible-body">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">place</i>8/24/16</div>
+                    <div class="collapsible-body">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">email</i>8/4/16</div>
+                    <div class="collapsible-body">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">phone</i>07/16/16</div>
+                    <div class="collapsible-body">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
