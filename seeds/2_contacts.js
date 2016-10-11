@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /* eslint-disable camelcase, sort-keys */
 
@@ -65,7 +65,6 @@ exports.seed = (knex, Promise) => {
         fb_url: ``,
         photo: ``,
         notes: `Jessica is a great business woman.`
-      }
-      ]);
-  });
+      }]);
+    });
 };
