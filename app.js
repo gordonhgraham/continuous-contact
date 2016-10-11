@@ -78,7 +78,6 @@ app.use((req, res, next) => {
 app.use(`/`, routes);
 app.use(`/user`, user);
 app.use(`/contact`, contact);
-// app.use(`/users`, users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
