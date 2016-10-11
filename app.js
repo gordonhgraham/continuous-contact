@@ -12,8 +12,8 @@ const bcrypt = require(`bcrypt`);
 
 const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
-const contacts = require(`./routes/contacts`);
-const individual = require(`./routes/individual`);
+const user = require(`./routes/user`);
+const contact = require(`./routes/contact`);
 
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 const passport = require(`passport`);
@@ -80,6 +80,8 @@ app.use((req, res, next) => {
 });
 app.use(`/`, routes);
 app.use(`/users`, users);
+app.use(`/user`, user);
+app.use(`/contact`, contact);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
