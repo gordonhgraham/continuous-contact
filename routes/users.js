@@ -10,17 +10,18 @@ const knex = require(`../db/knex`);
 router.get(`/`, (req, res) => {
   knex(`users`)
     .then(data => {
-      res.send(data);
+      console.log(data);
+      res.render(`user_home`, data);
     })
 })
 
-router.post(`/`, passport.authenticate(`local`, {
-  sucessRedirect: `http://facebook.com`,
-  failureRedirect: `http://google.com` }),
-  (req, res, next) => {
-    // console.log(req.user);
-    // res.send(`LOGIN SUCCESS`);
-});
+// router.post(`/`, passport.authenticate(`local`, {
+//   sucessRedirect: `http://facebook.com`,
+//   failureRedirect: `http://google.com` }),
+//   (req, res, next) => {
+//     // console.log(req.user);
+//     // res.send(`LOGIN SUCCESS`);
+// });
 
 // router.get(`/`, (req, res, next) => {
 //   res.send(`respond with a resource`);
