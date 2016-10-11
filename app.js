@@ -8,11 +8,12 @@ const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
 
+const bcrypt = require(`bcrypt`);
+
 const routes = require(`./routes/index`);
 const users = require(`./routes/users`);
 const contacts = require(`./routes/contacts`);
 const individual = require(`./routes/individual`);
-const knex = require(`/db/knex`);
 
 const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
 const passport = require(`passport`);
