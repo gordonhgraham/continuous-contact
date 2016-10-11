@@ -3,12 +3,12 @@
 module.exports = {
   development: {
     client: `pg`,
-    connection: `postgres://localhost/continuous_contact_dev`
+    connection: `postgres://localhost/ccontact_dev`
   },
 
   test: {
     client: `pg`,
-    connection: `postgres://localhost/continuous_contact_test`
+    connection: `postgres://localhost/ccontact_test`
   },
 
   production: {
