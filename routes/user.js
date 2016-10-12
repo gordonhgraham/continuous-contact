@@ -51,23 +51,52 @@ router.post(`/signup`, (req, res, next) => {
 
 // user login with email (read user)
 router.post(`/login`, (req, res, next) => {
+  console.log('0-',req.body);
+  console.log(`1- route login`);
     knex(`users`)
         .where(`email`, req.body.email)
         .first()
         .then(function(results) {
-            if (!results) {
-                throw new Error(400, `Bad email or password`)
-            } else {
-                let user = results;
-                let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
-                if (passwordMatch === false) {
-                    throw new Error(400, `Bad email or password`)
-                } else {
-                    delete user.hashed_password
-                    req.session.userId = user
-                    res.send(user)
-                }
+          // if (results) {
+            console.log(`2-`, results);
+            let user = results;
+            // let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
+            let passwordMatch = true;
+             console.log(`3-password match`,passwordMatch);
+             console.log('3.5-req.body.password',req.body.password,user.hashed_password);
+            if (req.body.password == user.hashed_password) {
+              console.log(`4-authenticated user`,user);
+              // delete user.hashed_password
+              req.session.user = user
+              // knex('contacts')
+              //   .where(`user_id`, user.id)
+              // res.send(user)
+              res.render('user',{user:user})
             }
+            else {
+              console.log(`5-throwing new error`);
+              throw new Error(400, `Bad email or password`)
+            }
+          // }
+
+
+            // if (!results) {
+            //     throw new Error(400, `Bad email or password`)
+            // } else {
+            //   console.log(`2-`,results);
+            //     let user = results;
+            //     let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
+            //     if (passwordMatch === false) {
+            //         throw new Error(400, `Bad email or password`)
+            //     } else {
+            //       console.log(`3-`,user);
+            //         delete user.hashed_password
+            //         req.session.userId = user
+            //         // knex('contacts')
+            //         //   .where(`user_id`, user.id)
+            //         res.send(user)
+            //     }
+            // }
         })
         .catch((err) => {
             next(err);

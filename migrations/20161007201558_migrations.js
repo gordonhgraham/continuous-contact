@@ -7,7 +7,8 @@ exports.up = (knex, Promise) => {
     knex.schema.createTable(`users`, table => {
       table.increments();
       table.string(`email`).notNullable().unique().index();
-      table.specificType(`hashed_password`, `char(60)`).notNullable();
+      // table.specificType(`hashed_password`, `char(60)`).notNullable();
+      table.text(`hashed_password`).notNullable();
       table.string(`first_name`).defaultTo(``);
       table.string(`last_name`).defaultTo(``);
       table.text(`linkedin_url`).defaultTo(``);

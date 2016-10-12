@@ -25,7 +25,7 @@ $(document).ready(function() {
             }),
             dataType: `json`,
             type: `POST`,
-            url: `/login`
+            url: `/user/login`
         };
 
         $.ajax(options)
@@ -33,7 +33,7 @@ $(document).ready(function() {
                 window.location.href = `/user`;
             })
             .fail(($xhr) => {
-                Materialize.toast($xhr.responseText, 3000);
+                // Materialize.toast($xhr.responseText, 3000);
             });
     });
 })

@@ -64,8 +64,8 @@ app.get(`/auth/linkedin`,
     // function will not be called.
   });
 app.get(`/auth/linkedin/callback`, passport.authenticate(`linkedin`, {
-  successRedirect: `/user`,
-  failureRedirect: `./views/error`
+  successRedirect: `/views/user.handlebars`,
+  failureRedirect: `/views/error.handlebars`
 }));
 app.use((req, res, next) => {
   if (!req.session.passport) {
