@@ -23,9 +23,10 @@
                         </thead>
                         <tbody>
                           {{# each contacts}}
-                          <tr>
+                          <tr id="{{id}}">
                             <td>{{first_name}}</td>
                             <td>{{last_name}}</td>
+                            <!-- <td style="display: none">{{id}}</td> -->
                           </tr>
                           {{/each}}
                         </tbody>
