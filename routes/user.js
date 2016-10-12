@@ -14,4 +14,8 @@ router.get(`/`, (req, res, next) => {
     });
 });
 
+router.post(`/addContact` (req, res, next) => {
+  /* adds info from form to db */
+});
+
 module.exports = router;
