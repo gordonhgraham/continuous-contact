@@ -1,10 +1,11 @@
 
-'use strict';
+`use strict`;
 
 const express = require(`express`);
 const router = express.Router();
 const passport = require(`passport`);
 const knex = require(`../db/knex`);
+const bcrypt = require(`bcrypt-as-promised`);
 
 // display contacts page...res.redirect (list contacts)
 router.get(`/`, (req, res, next) => {
@@ -25,35 +26,44 @@ router.get(`/`, (req, res, next) => {
 
 // user signup with email (create user)
 router.post(`/signup`, (req, res, next) => {
-  const newUser = req.body;
-
-  // if anything is blank send error
-  if (newUser.email && newUser.password) {
-    // take info from newUser, put into passport localStrategy to create user
-    // then use knex(`users`).insert() to add stuff to db
-    // then save res.session
-    // then render user's contats page
-  } else {
-    // revisit...dont know how to handle error of missing email or pass
-    return err => { next(err); };
-  }
+    bcrypt.hash(req.body.password, 12)
+    .then((hashed_password) => {
+        return knex(`users`)
+            .insert({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email,
+                hashed_password: hashed_password,
+            }, `*`)
+    })
+    .then((users) => {
+        const user = users[0];
+        delete user.hashed_password;
+        req.session.user_id = users;
+        res.send(user);
+    })
+    .catch((err) => {
+        next(err);
+    });
 });
+
 
 // user login with email (read user)
 router.post(`/login`, (req, res, next) => {
-  // wait to see what passport needs with this
+  
 });
 
-// user signup with Linkedin (create user)
-router.post(`/signup`, (req, res, next) => {
-  // wait to see what passport needs with this
-});
-
-// user login with Linkedin (read user)
-router.get(`/login`, (req, res, next) => {
-  // wait to see what passport needs with this...
-  res.render(`linkedin`)
-});
+// MB: NO NEED FOR USER SIGNUP REDIRECT W/PASSPORT - I THINK IT AUTO-REDIRECTS
+// // user signup with Linkedin (create user)
+// router.post(`/signup`, (req, res, next) => {
+//   // wait to see what passport needs with this
+// });
+//
+// // user login with Linkedin (read user)
+// router.get(`/login`, (req, res, next) => {
+//   // wait to see what passport needs with this...
+//   res.render(`linkedin`)
+// });
 
 // update user info (update user)
 router.patch(`/update`, (req, res, next) => {
@@ -63,7 +73,6 @@ router.patch(`/update`, (req, res, next) => {
 
     knex(`users`)
       .where(`id`, userId)
-
       // update is object of what was update, return all users saved settings
       .update(update, [`email`, `first_name`, `last_name`, `linkedin_url`])
       .then(data => {
