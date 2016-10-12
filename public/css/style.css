@@ -24,6 +24,10 @@ nav .brand-logo {
   background-color: #9E474C;
 }
 
+.header {
+  color: #9E474C;
+}
+
 .btn:hover {
   background-color: #F2D653;
 }
