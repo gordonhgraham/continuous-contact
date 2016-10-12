@@ -7,6 +7,7 @@ const passport = require(`passport`);
 const knex = require(`../db/knex`);
 const bcrypt = require(`bcrypt-as-promised`);
 
+
 // display contacts page...res.redirect (list contacts)
 router.get(`/`, (req, res, next) => {
   if (req.session) {
@@ -50,8 +51,30 @@ router.post(`/signup`, (req, res, next) => {
 
 // user login with email (read user)
 router.post(`/login`, (req, res, next) => {
-  
+    knex(`users`)
+        .where(`email`, req.body.email)
+        .first()
+        .then(function(results) {
+            if (!results) {
+                throw new Error(400, `Bad email or password`)
+            } else {
+                let user = results;
+                let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
+                if (passwordMatch === false) {
+                    throw new Error(400, `Bad email or password`)
+                } else {
+                    delete user.hashed_password
+                    req.session.userId = user
+                    res.send(user)
+                }
+            }
+        })
+        .catch((err) => {
+            next(err);
+        })
 });
+
+//validation??
 
 // MB: NO NEED FOR USER SIGNUP REDIRECT W/PASSPORT - I THINK IT AUTO-REDIRECTS
 // // user signup with Linkedin (create user)

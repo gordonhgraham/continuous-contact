@@ -1,33 +1,33 @@
 $(document).ready(function() {
-  'use strict';
+  `use strict`;
 
-  $('#modal1');
+  $(`#modal1`);
 
-  $('#login').click((event) => {
+  $(`#login`).click((event) => {
     event.preventDefault();
 
-    const email = $('#email').val().trim();
-    const password = $('#password').val();
+    const email = $(`#email`).val().trim();
+    const password = $(`#password`).val();
 
     if (!email) {
-      return Materialize.toast('Email must not be blank', 3000);
+      return Materialize.toast(`Email must not be blank`, 3000);
     }
 
     if (!password) {
-      return Materialize.toast('Password must not be blank', 3000);
+      return Materialize.toast(`Password must not be blank`, 3000);
     }
 
     const options = {
-      contentType: 'application/json',
+      contentType: `application/json`,
       data: JSON.stringify({ email, password }),
-      dataType: 'json',
-      type: 'POST',
-      url: '/session'
+      dataType: `json`,
+      type: `POST`,
+      url: `/login`
     };
 
     $.ajax(options)
       .done(() => {
-        window.location.href = '/index';
+        window.location.href = `/user`;
       })
       .fail(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
