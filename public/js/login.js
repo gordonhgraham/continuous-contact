@@ -3,11 +3,11 @@
 
   $('.modal1').sideNav();
 
-  $('#loginForm').submit((event) => {
+  $('#login').click((event) => {
     event.preventDefault();
 
     const email = $('#email').val().trim();
-    const password = $('#password').val();
+    const password = $('#password').val().trim();
 
     if (!email) {
       return Materialize.toast('Email must not be blank', 3000);
@@ -22,7 +22,7 @@
       data: JSON.stringify({ email, password }),
       dataType: 'json',
       type: 'POST',
-      url: '/session'
+      url: `/user`
     };
 
     $.ajax(options)
@@ -33,4 +33,4 @@
         Materialize.toast($xhr.responseText, 3000);
       });
   });
-})();
+})
