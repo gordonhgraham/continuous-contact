@@ -8,9 +8,6 @@ const logger = require(`morgan`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
 const bcrypt = require(`bcrypt`);
-const passport = require(`passport`);
-
-const bcrypt = require(`bcrypt`);
 
 const routes = require(`./routes/index`);
 const user = require(`./routes/user`);

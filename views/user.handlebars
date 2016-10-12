@@ -1,36 +1,69 @@
-    <main>
-        <div class="container">
-            <h1>Hello, {{user}} USER</h1>
-            <div class="row">
-                <div class="col l9">
-                    <h3>Contact List</h3>
-                </div>
-                <div class="col l3">
-                    <div class="container">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">+</i></a>
-                    </div>
+<main>
+    <div class="container">
+        <h1>Hello, {{user}} USER</h1>
+        <div class="row">
+            <div class="col l9">
+                <h3>Contact List</h3>
+            </div>
+            <div class="col l3">
+                <div class="container">
+                  <!-- Modal Trigger -->
+                    <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#add-contact"><i class="material-icons">+</i></a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col l9">
-
-                    <table class="highlight">
-                        <thead>
-                            <tr>
-                                <th data-field="first_name">First Name</th>
-                                <th data-field="last_name">Last Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          {{# each users}}
-                          <tr>
-                            <td>{{first_name}}</td>
-                            <td>{{last_name}}</td>
-                          </tr>
-                          {{/each}}
-                        </tbody>
-                    </table>
+            <!-- Modal Structure -->
+            <div id="add-contact" class="modal">
+                <div class="modal-content">
+                    <h4>Add Contact</h4>
+                    <form class="newContact" method="post">
+                      <label for="first_name">First Name--Required</label>
+                        <input type="text" name="first_name" value="" required>
+                      <label for="last_name">Last Name--Required</label>
+                        <input type="text" name="last_name" value="" required>
+                      <label for="company">Company</label>
+                        <input type="text" name="company" value="">
+                      <label for="phone">Phone</label>
+                        <input type="text" name="phone" value="">
+                      <label for="email">email</label>
+                        <input type="text" name="email" value="">
+                      <label for="address">Address</label>
+                        <input type="text" name="address" value="">
+                      <label for="city">City</label>
+                        <input type="text" name="city" value="">
+                      <label for="state">State</label>
+                        <input type="text" name="state" value="">
+                      <label for="zip">Zip</label>
+                        <input type="text" name="zip" value="">
+                      <label for="notes">Notes</label>
+                        <input type="text" name="notes" value="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Discard Changes</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save Changes</a>
                 </div>
             </div>
         </div>
-    </main>
+        <div class="row">
+            <div class="col l9">
+
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th data-field="first_name">First Name</th>
+                            <th data-field="last_name">Last Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{# each users}}
+                            <tr>
+                                <td>{{first_name}}</td>
+                                <td>{{last_name}}</td>
+                            </tr>
+                            {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
