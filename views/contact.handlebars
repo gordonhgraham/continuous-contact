@@ -68,8 +68,35 @@
                     <h4>Interactions</h4>
                 </div>
                 <div class="col m1 offset-m5">
-                    <a id="add-interaction" class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a></div>
+                    <a id="new-Interaction" class="btn-floating btn-medium waves-effect waves-light red modal-trigger" href="#newInteraction"><i class="material-icons">add</i></a></div>
+
+            <!-- Modal Structure -->
+            <div id="newInteraction" class="modal">
+             <div class="modal-content">
+               <h4>New Interaction</h4>
+               <form class="newInteraction" action="index.html" method="post">
+                 <label for="date">Date</label>
+                 <input type="date" name="date" value="">
+                 <label for="type_id">Type</label><br>
+                 <input name="type_id" type="radio" id="phone" />
+                 <label for="phone">Phone</label><br>
+                 <input name="type_id" type="radio" id="email" />
+                 <label for="email">Email</label><br>
+                 <input name="type_id" type="radio" id="in_person" />
+                 <label for="in_person">In Person</label><br>
+                 <input name="type_id" type="radio" id="other" />
+                 <label for="other">Other</label><br>
+                 <br>
+                 <label for="notes">Notes:</label>
+                 <input type="textarea" name="notes" value="">
+               </form>
+             </div>
+             <div class="modal-footer">
+               <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save Changes</a>
+               <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Discard Changes</a>
+             </div>
             </div>
+          </div>
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
                     <div class="collapsible-header"><i class="material-icons">phone</i>10/3/16
