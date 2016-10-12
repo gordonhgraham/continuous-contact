@@ -1,23 +1,22 @@
 (function() {
   'use strict';
 
-  $('.modal2').sideNav();
-  // $('.button-collapse').sideNav();
+  $('.modal2');
 
   // eslint-disable-next-line max-statements
-  $('#signUpForm').submit((event) => {
+  $('#signup').click((event) => {
     event.preventDefault();
 
-    const firstName = $('#firstName').val().trim();
-    const lastName = $('#lastName').val().trim();
+    const first_name = $('#first_name').val().trim();
+    const last_name = $('#last_name').val().trim();
     const email = $('#email').val().trim();
-    const password = $('#password').val();
+    const password = $('#password').val().trim();
 
-    if (!firstName) {
+    if (!first_name) {
       return Materialize.toast('First name must not be blank', 3000);
     }
 
-    if (!lastName) {
+    if (!last_name) {
       return Materialize.toast('Last name must not be blank', 3000);
     }
 

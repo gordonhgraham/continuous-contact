@@ -26,7 +26,14 @@ passport.use(new LinkedInStrategy({
   scope: [`r_emailaddress`, `r_basicprofile`],
   state: true
 }, (accessToken, refreshToken, profile, done) => {
-  done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
+  console.log("passport LinkedIN, profile: " + profile);
+  // process.nextTick(function() {
+  //   if (!req.user) {
+  //     knex('users')
+  //       .where('link')
+  //   }
+  // })
+  done(null, profile)
 }));
 
 app.engine(`handlebars`, exphbs({defaultLayout: `main`}));
@@ -73,6 +80,7 @@ app.use((req, res, next) => {
   }
   next();
 });
+
 app.use(`/`, routes);
 app.use(`/user`, user);
 app.use(`/contact`, contact);
