@@ -8,8 +8,9 @@ const knex = require(`../db/knex`);
 router.get(`/`, (req, res, next) => {
   knex(`contacts`)
     .where(`user_id`, 1)
-    .then(data => {
-      res.render(`user`, data);
+    .then(contacts => {
+      console.log(contacts);
+      res.render(`user`, { contacts: contacts });
     });
 });
 
