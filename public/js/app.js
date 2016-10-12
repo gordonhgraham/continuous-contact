@@ -7,4 +7,6 @@ $(document).ready(function() {
         window.location.href = '/contact';
       });
   });
+  $('.button-collapse').sideNav();
+  $('.parallax').parallax();
 });
