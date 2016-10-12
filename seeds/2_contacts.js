@@ -5,7 +5,14 @@
 exports.seed = (knex, Promise) => {
   return knex(`contacts`).del()
     .then(() => {
-      return knex(`contacts`).insert([{
+      return knex(`contacts`).insert([
+        {
+          user_id: 1,
+          first_name: `Craig`,
+          last_name: `Quincy`,
+          company: `Galvanize`,
+        },
+        {
         user_id: 1,
         first_name: `James`,
         last_name: `Graham`,
