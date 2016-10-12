@@ -3,13 +3,24 @@
 
 const express = require(`express`);
 const router = express.Router();
+
+router.get('/', function(req, res, next){
+  console.log("Fired");
+  res.render('error')
+})
 const passport = require(`passport`);
 const knex = require(`../db/knex`);
-const bcrypt = require(`bcrypt-as-promised`);
+const bcrypt = require(`bcrypt`);
 
+
+router.get(`/`, (req,res,next) => {
+  console.log(`USER RENDER IS FIRING`);
+  res.render(`user`)
+})
 
 // display contacts page...res.redirect (list contacts)
 router.get(`/`, (req, res, next) => {
+  console.log(`CONTACTS RENDER IS FIRING AND IT SHOULD NOT BE`);
   if (req.session) {
     const userId = req.session.id;
 
@@ -57,27 +68,26 @@ router.post(`/login`, (req, res, next) => {
         .where(`email`, req.body.email)
         .first()
         .then(function(results) {
-          // if (results) {
+          if (results) {
             console.log(`2-`, results);
             let user = results;
-            // let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
-            let passwordMatch = true;
+            let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
+            // let passwordMatch = true;
              console.log(`3-password match`,passwordMatch);
              console.log('3.5-req.body.password',req.body.password,user.hashed_password);
             if (req.body.password == user.hashed_password) {
               console.log(`4-authenticated user`,user);
-              // delete user.hashed_password
-              req.session.user = user
-              // knex('contacts')
-              //   .where(`user_id`, user.id)
-              // res.send(user)
-              res.render('user',{user:user})
+              delete user.hashed_password;
+              // res.send(user);
+              console.log(`5-rendering`);
+              // res.render('user',{user:user})
+              res.render('user');
             }
             else {
-              console.log(`5-throwing new error`);
+              console.log(`6-throwing new error`);
               throw new Error(400, `Bad email or password`)
             }
-          // }
+          }
 
 
             // if (!results) {

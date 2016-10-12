@@ -1,49 +1,55 @@
 'use strict';
 
-require(`dotenv`).load();
-const express = require(`express`);
-const session = require(`express-session`);
-const exphbs = require(`express-handlebars`);
-const path = require(`path`);
-const logger = require(`morgan`);
-const cookieParser = require(`cookie-parser`);
-const bodyParser = require(`body-parser`);
+require('dotenv').load();
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-const bcrypt = require(`bcrypt`);
+const bcrypt = require('bcrypt');
 
-const routes = require(`./routes/index`);
-const user = require(`./routes/user`);
-const contact = require(`./routes/contact`);
+const routes = require('./routes/index');
+const user = require('./routes/user');
+const contact = require('./routes/contact');
 
-// const users = require(`./routes/users`);
+// const users = require('./routes/users');
 
-const LinkedInStrategy = require(`passport-linkedin-oauth2`).Strategy;
-const passport = require(`passport`);
+const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+const passport = require('passport');
 const app = express();
 
 passport.use(new LinkedInStrategy({
   clientID: process.env.LINKEDIN_CLIENT_ID,
   clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/linkedin/callback",
-  scope: [`r_emailaddress`, `r_basicprofile`],
+  scope: ['r_emailaddress', 'r_basicprofile'],
   state: true
 }, (accessToken, refreshToken, profile, done) => {
   done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
 }));
 
-app.engine(`handlebars`, exphbs({ defaultLayout: `main` }));
-app.set(`view engine`, `handlebars`);
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
-app.use(logger(`dev`));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, `public`)));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: `keyboard cat`,
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false
 }));
+
+app.get('*', function(req, res, next){
+  console.log('Every request should make this log')
+  next();
+})
+
 
 // init passport
 app.use(passport.initialize());
@@ -57,15 +63,15 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user)
 });
-app.get(`/auth/linkedin`,
-  passport.authenticate(`linkedin`),
+app.get('/auth/linkedin',
+  passport.authenticate('linkedin'),
   (req, res) => {
     // The request will be redirected to LinkedIn for authentication, so this
     // function will not be called.
   });
-app.get(`/auth/linkedin/callback`, passport.authenticate(`linkedin`, {
-  successRedirect: `/views/user.handlebars`,
-  failureRedirect: `/views/error.handlebars`
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+  successRedirect: '/views/user.handlebars',
+  failureRedirect: '/views/error.handlebars'
 }));
 app.use((req, res, next) => {
   if (!req.session.passport) {
@@ -75,13 +81,15 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(`/`, routes);
-app.use(`/user`, user);
-app.use(`/contact`, contact);
+
+
+app.use('/', routes);
+app.use('/user', user);
+app.use('/contact', contact);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error(`Not Found`);
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -89,10 +97,10 @@ app.use((req, res, next) => {
 // error handlers
 // development error handler
 // will print stacktrace
-if (app.get(`env`) === `development`) {
+if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.render(`error`, {
+    res.render('error', {
       message: err.message,
       error: err
     });
@@ -103,7 +111,7 @@ if (app.get(`env`) === `development`) {
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render(`error`, {
+  res.render('error', {
     message: err.message,
     error: {}
   });
