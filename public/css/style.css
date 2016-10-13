@@ -2,6 +2,10 @@
   outline: 3px black solid;
 }*/
 
+html {
+    font-family: 'Raleway', sans-serif;
+}
+
 .modal-content {
   color: #453A34;
 }
@@ -24,6 +28,10 @@ nav .brand-logo {
   background-color: #9E474C;
 }
 
+.header {
+  color: #9E474C;
+}
+
 .btn:hover {
   background-color: #F2D653;
 }
@@ -33,9 +41,16 @@ main {
   font-size: 1.2em;
   font-family: 'Raleway', sans-serif;
   color: #453A34;
+  flex: 1 0 auto;
   /*background-color: #F1F5EB;*/
 }
 
 #add-interaction {
   margin-top: 19px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
