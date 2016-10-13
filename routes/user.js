@@ -8,9 +8,15 @@ const knex = require(`../db/knex`);
 router.get(`/`, (req, res, next) => {
   knex(`contacts`)
     .where(`user_id`, 1)
-    .then(data => {
-      res.render(`user`, data);
+    .orderBy(`first_name`)
+    .then(contacts => {
+      console.log(contacts);
+      res.render(`user`, { contacts: contacts });
     });
 });
+
+// router.post(`/addContact` (req, res, next) => {
+//   /* adds info from form to db */
+// });
 
 module.exports = router;

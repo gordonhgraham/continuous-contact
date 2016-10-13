@@ -1,6 +1,6 @@
     <main>
         <div class="container">
-            <h1>Hello, {{user}} USER</h1>
+            <h1>Hello, Gordon</h1>
             <div class="row">
                 <div class="col l9">
                     <h3>Contact List</h3>
@@ -22,10 +22,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                          {{# each users}}
-                          <tr>
+                          {{# each contacts}}
+                          <tr id="{{id}}">
                             <td>{{first_name}}</td>
                             <td>{{last_name}}</td>
+                            <!-- <td style="display: none">{{id}}</td> -->
                           </tr>
                           {{/each}}
                         </tbody>

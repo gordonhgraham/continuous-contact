@@ -5,7 +5,14 @@
 exports.seed = (knex, Promise) => {
   return knex(`contacts`).del()
     .then(() => {
-      return knex(`contacts`).insert([{
+      return knex(`contacts`).insert([
+        {
+          user_id: 1,
+          first_name: `Craig`,
+          last_name: `Quincy`,
+          company: `Galvanize`,
+        },
+        {
         user_id: 1,
         first_name: `James`,
         last_name: `Graham`,
@@ -21,7 +28,7 @@ exports.seed = (knex, Promise) => {
         photo: ``,
         notes: `James is my father. He's great.`
       }, {
-        user_id: 2,
+        user_id: 1,
         first_name: `Kevin`,
         last_name: `Connolly`,
         company: `Entourage Group`,
@@ -36,7 +43,7 @@ exports.seed = (knex, Promise) => {
         photo: ``,
         notes: `Kevin is a great manager.`
       }, {
-        user_id: 3,
+        user_id: 1,
         first_name: `Kevin`,
         last_name: `Dillon`,
         company: `Entourage Group`,
@@ -51,7 +58,7 @@ exports.seed = (knex, Promise) => {
         photo: ``,
         notes: `Kevin is a great party animal.`
       }, {
-        user_id: 4,
+        user_id: 1,
         first_name: `Jessica`,
         last_name: `Alba`,
         company: `Entourage Group`,
