@@ -2,6 +2,10 @@
   outline: 3px black solid;
 }*/
 
+html {
+    font-family: 'Raleway', sans-serif;
+}
+
 .modal-content {
   color: #453A34;
 }
