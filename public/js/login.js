@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  $('.modal1').sideNav();
+  $('.modal1');
 
   $('#login').click((event) => {
     event.preventDefault();
@@ -27,7 +27,7 @@
 
     $.ajax(options)
       .done(() => {
-        window.location.href = '/contacts.html';
+        window.location.href = '/user';
       })
       .fail(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);

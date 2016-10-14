@@ -40,12 +40,12 @@
       data: JSON.stringify({ firstName, lastName, email, password }),
       dataType: 'json',
       type: 'POST',
-      url: '/views/user.hbs'
+      url: '/user'
     };
 
     $.ajax(options)
       .done(() => {
-        window.location.href = '/views/contact.hbs';
+        window.location.href = 'user';
       })
       .fail(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
