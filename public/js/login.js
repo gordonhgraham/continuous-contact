@@ -7,8 +7,8 @@ $(document).ready(function() {
     console.log("THIS IS THE LOGIN CLICK");
     event.preventDefault();
 
-    const email = $('#email').val().trim();
-    const password = $('#password').val().trim();
+    const email = $('#login_email').val().trim();
+    const password = $('#login_password').val().trim();
 
     if (!email) {
       return Materialize.toast('Email must not be blank', 3000);
@@ -23,7 +23,7 @@ $(document).ready(function() {
       data: JSON.stringify({ email, password }),
       dataType: 'json',
       type: 'POST',
-      url: `/user`
+      url: `/user/login`
     };
 
     $.ajax(options)
