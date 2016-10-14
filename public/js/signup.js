@@ -46,7 +46,7 @@ $(document).ready(function() {
       data: JSON.stringify({ first_name, last_name, email, password }),
       dataType: 'json',
       type: 'POST',
-      url: '/user'
+      url: '/user/signup'
     };
 
     $.ajax(options)

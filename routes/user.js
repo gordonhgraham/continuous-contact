@@ -48,23 +48,36 @@ router.post(`/login`, (req, res, next) => {
         })
 });
 
-router.post(`/signup`, (req,res,next) =>
-  let first_name = req.body.first_name;
-  let last_name = req.body.last_name;
-  let password = req.body.password; //write code for hashed password
-  let email = req.body.email;
+router.post(`/signup`, (req,res,next) => {
+  console.log("1- SIGNUP ROUTE IS FIRING");
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const email = req.body.email;
+  const hashed_password = bcrypt.hashSync(req.body.password, 12)
+
+  console.log("2-first name" + first_name);
+  console.log("3-last name" + last_name);
+  console.log("4-email" + email);
+  console.log("5-password" + hashed_password);
   knex(`users`)
-    .where(`email`, email)
-    .then((results) => {
-      if (results.length > 0) {
-        //send an error saying user already exists
-      } else {
-        knex(`users`)
-        .insert
-        //insert user
-      }
-    })
-)
+    .insert({
+      first_name: first_name,
+      last_name: last_name,
+      hashed_password : hashed_password,
+      email : email
+    }, '*')
+  .then((users) => {
+    const user = users[0];
+    console.log("6-user " + user);
+    delete user.hashed_password;
+    req.session = users;
+    res.send(user);
+  })
+  .catch((err) => {
+    next(err);
+});
+});
+
 // router.post(`/addContact` (req, res, next) => {
 //   /* adds info from form to db */
 // });
