@@ -16,29 +16,19 @@ router.get(`/`, (req, res, next) => {
 });
 
 router.post(`/login`, (req, res, next) => {
-  // console.log('0-',req.body);
-  // console.log(`1- route login`);
     knex(`users`)
         .where(`email`, req.body.email)
         .first()
         .then(function(results) {
+          console.log(`2-`, results);
           if (results) {
-            // console.log(`2-`, results);
             let user = results;
             let passwordMatch = bcrypt.compareSync(req.body.password, user.hashed_password);
-            // let passwordMatch = true;
-            //  console.log(`3-password match`,passwordMatch);
-            //  console.log('3.5-req.body.password',req.body.password,user.hashed_password);
-            if (req.body.password == user.hashed_password) {
-              // console.log(`4-authenticated user`,user);
+            if (passwordMatch) {
               delete user.hashed_password;
               res.send(user);
-              // console.log(`5-rendering`);
-              // res.render('user',{user:user})
-              // res.render('user');
             }
             else {
-              // console.log(`6-throwing new error`);
               throw new Error(400, `Bad email or password`)
             }
           }
@@ -49,16 +39,11 @@ router.post(`/login`, (req, res, next) => {
 });
 
 router.post(`/signup`, (req,res,next) => {
-  console.log("1- SIGNUP ROUTE IS FIRING");
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const email = req.body.email;
   const hashed_password = bcrypt.hashSync(req.body.password, 12)
 
-  console.log("2-first name" + first_name);
-  console.log("3-last name" + last_name);
-  console.log("4-email" + email);
-  console.log("5-password" + hashed_password);
   knex(`users`)
     .insert({
       first_name: first_name,

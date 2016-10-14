@@ -10,6 +10,9 @@ $(document).ready(function() {
     const email = $('#login_email').val().trim();
     const password = $('#login_password').val().trim();
 
+    console.log("1-email " + email);
+    console.log("2-password" + password);
+
     if (!email) {
       return Materialize.toast('Email must not be blank', 3000);
     }
@@ -28,7 +31,7 @@ $(document).ready(function() {
 
     $.ajax(options)
       .done(() => {
-        window.location.href = '/user';
+        window.location.href = 'user';
       })
       .fail(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
