@@ -1,9 +1,10 @@
-(function() {
+$(document).ready(function() {
   'use strict';
 
   $('.modal1');
 
   $('#login').click((event) => {
+    console.log("THIS IS THE LOGIN CLICK");
     event.preventDefault();
 
     const email = $('#email').val().trim();
@@ -34,3 +35,4 @@
       });
   });
 })
+// ();
